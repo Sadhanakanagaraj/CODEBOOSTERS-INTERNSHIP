@@ -1,0 +1,92 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Accordion Menu</title>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      margin: 0;
+      padding: 0;
+      background-image: url('images/10.jpg');
+      height: 600px;
+      width: 800px;
+      background-size: cover;
+      background-position: center;
+    }
+
+    .accordion {
+      list-style: none;
+      padding: 0;
+      margin: 0;
+      width: 800px;
+      height: 50px;
+      margin-left: 160px;
+      
+    }
+
+    .accordion-item {
+      margin-bottom: 1px;
+    }
+
+    .accordion-header {
+      background-color: #333 ;
+      color: #fff;
+      padding: 10px;
+      cursor: pointer;
+    }
+
+    .accordion-content {
+      display: none;
+      padding: 10px;
+      background-color: #f4f4f4;
+    }
+  </style>
+</head>
+<body>
+
+<ul class="accordion">
+  <li class="accordion-item">
+    <div class="accordion-header">What is an accordian panel?</div>
+    <div class="accordion-content">
+      <p>The Accordion Panel component is used to hold content within a panel that can be expanded or collapsed. This is ideal for content that does not need to be exposed all at once and is useful for saving space on a page.</p>
+    </div>
+  </li>
+  <li class="accordion-item">
+    <div class="accordion-header">What is the difference between accordian and dropdown?</div>
+    <div class="accordion-content">
+      <p>The accordion will push down the content, while the dropdown lays over the content.</p>
+    </div>
+  </li>
+  <li class="accordion-item">
+    <div class="accordion-header">What is the accordian toggle menu?</div>
+    <div class="accordion-content">
+      <p>Accordion menu can have a separate submenu toggle. This allows the parent item to have its own link, but still allows the submenu to be opened/closed.</p>
+    </div>
+  </li>
+</ul>
+
+<script>
+  document.addEventListener('DOMContentLoaded', function () {
+    const accordionItems = document.querySelectorAll('.accordion-item');
+
+    accordionItems.forEach(item => {
+      const header = item.querySelector('.accordion-header');
+
+      header.addEventListener('click', function () {
+        item.classList.toggle('active');
+
+        const content = item.querySelector('.accordion-content');
+        if (content.style.display === 'block') {
+          content.style.display = 'none';
+        } else {
+          content.style.display = 'block';
+        }
+      });
+    });
+  });
+</script>
+
+</body>
+</html>
