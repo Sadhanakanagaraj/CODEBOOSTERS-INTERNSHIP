@@ -1,0 +1,92 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Draggable Navigation Menu with Icons</title>
+    <!-- Add Font Awesome CSS -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Dancing+Script:wght@700&display=swap" rel="stylesheet">
+    <style>
+        body {
+            margin: 0;
+            font-family: 'Comic Sans MS', cursive;
+        }
+
+        #menu {
+            position: fixed;
+            display: flex;
+            top: 0;
+            left: 10px; /* Add unit (e.g., px) to the left property */
+            width: 600px;
+            height: 55px;
+            background: linear-gradient(45deg, yellow, darkviolet);
+            padding: 20px;
+            box-sizing: border-box;
+            cursor: grab;
+            border-radius: 25px;
+        }
+
+        #menu a {
+            display: flex; /* Add this line to align items vertically */
+            align-items: center;
+            color: white;
+            text-decoration: none;
+            margin-bottom: 10px;
+            padding: 0 12px; /* Add padding for better spacing */
+        }
+
+        #menu a i {
+            margin-right: 10px;
+        }
+
+        #menu a:hover {
+            text-decoration: none;
+            color: darkviolet;
+        }
+    </style>
+</head>
+<body>
+
+<div id="menu">
+    <a href="https://www.codeboosters.in/" target="box"><i class="fas fa-home"></i>Home</a>
+    <a href="https://www.codeboosters.in/aboutus.html" target="box"><i class="fas fa-info-circle"></i> About</a>
+    <a href="https://www.codeboosters.in/course.html" target="box"><i class="fas fa-cogs"></i> Courses</a>
+    <a href="https://www.codeboosters.in/contact.html" target="box"><i class="fas fa-envelope"></i> Contact</a>
+</div>
+
+<iframe name="box" width="1000px" height="500px"></iframe>
+
+<script>
+    let isDragging = false;
+    let offsetX, offsetY;
+
+    const menu = document.getElementById('menu');
+
+    menu.addEventListener('mousedown', (e) => {
+        isDragging = true;
+        offsetX = e.clientX - menu.getBoundingClientRect().left;
+        offsetY = e.clientY - menu.getBoundingClientRect().top;
+        menu.style.cursor = 'grabbing';
+    });
+
+    document.addEventListener('mousemove', (e) => {
+        if (!isDragging) return;
+
+        const x = e.clientX - offsetX;
+        const y = e.clientY - offsetY;
+
+        menu.style.left = `${x}px`;
+        menu.style.top = `${y}px`;
+    });
+
+    document.addEventListener('mouseup', () => {
+        isDragging = false;
+        menu.style.cursor = 'grab';
+    });
+</script>
+
+</body>
+</html>
